@@ -1,0 +1,48 @@
+ <img class="wave" src="assets/images/logo/wave.png">
+ <div class="container">
+    <div class="img">
+       <img src="assets/images/logo/bg.svg">
+    </div>
+    <div class="login-content">
+      <form (ngSubmit)="login()">
+         <img src="assets/images/layout_img/logo _erwini.png" />
+         <h2 class="title">Welcome</h2>
+         <div class="input-div one">
+           <div class="i">
+             <!-- <i class="fas fa-user"></i> -->
+           </div>
+           <div class="div">
+             <input
+               placeholder="Adresse e-mail ou numéro de tél."
+               type="text"
+               class="input"
+               [(ngModel)]="email"
+               name="email"
+             />
+           </div>
+         </div>
+         <div class="input-div pass">
+           <div class="i">
+             <!-- <i class="fas fa-lock"></i> -->
+           </div>
+           <div class="div">
+             <input
+               placeholder="Mot de passe"
+               [type]="changetype ? 'password' : 'text'"
+               class="input"
+               [(ngModel)]="password"
+               name="password"
+             />
+             <span class="eyeicon" (click)="viewpass()"
+               ><i [ngClass]="visible ? 'fa fa-eye' : 'fa fa-eye-slash'"></i
+             ></span>
+           </div>
+         </div>
+           <!-- Error message display -->
+     <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+         <input type="submit" class="btn" value="Login" />
+       </form>
+      </div>
+   </div>

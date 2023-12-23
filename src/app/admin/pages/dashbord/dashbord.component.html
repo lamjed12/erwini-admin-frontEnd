@@ -1,0 +1,23 @@
+<div class="full_container">
+   <div class="inner_container">
+      <app-sidebar></app-sidebar>
+      <div id="content">
+         <app-navbar></app-navbar>
+         <div class="midde_cont">
+            <div class="container-fluid">
+               <div class="row column_title">
+                  <div class="col-md-12">
+                     <div class="page_title">
+                        <h2>Les Actions</h2>
+                        <ejs-chart id="chart-container" [primaryXAxis]='primaryXAxis'[primaryYAxis]='primaryYAxis' [title]='title' (axisLabelRender) = 'axisLabelRender($event)'
+    [legendSettings]='legendSettings'>
+        <e-series-collection>
+            <e-series [dataSource]='chartData' type='Column' xName='country' yName='gold' name='Gold' ></e-series>
+        </e-series-collection>
+    </ejs-chart>
+
+                     </div>
+
+                  </div>
+
+               </div>

@@ -1,0 +1,166 @@
+.setting {
+  float: right;
+  padding: 0;
+}
+
+.spaceicon {}
+
+.icon_info ul li {
+  float: left;
+  width: 35px;
+  /* height: 35px; */
+  border-radius: 100%;
+  text-align: center;
+  line-height: 20px;
+  position: relative;
+  margin: 0px 0 0 0px;
+}
+
+.icon_info ul li .fa-plus-circle {
+
+  size: 50px;
+}
+
+.icon_info ul li .fa-trash {
+
+  color: #ff5722;
+  size: 50px;
+}
+
+.active {
+  color: green;
+  size: 50px;
+}
+
+.inactive {
+  color: #ff5722;
+  size: 50px;
+}
+
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  width: 100%;
+  background-color: #000
+}
+
+.card {
+  height: 450px;
+  width: 100%;
+  background-image: url('https://i.imgur.com/0v6OPXZ.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 1s
+}
+
+.card:hover {
+  background-image: url('https://i.imgur.com/nnGNYwf.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat
+}
+
+.text1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center
+}
+
+.text1 h1 {
+  color: #000;
+  font-size: 40px;
+  font-weight: 600;
+  font-family: 'Shippori Mincho B1', serif
+}
+
+.text2 {
+  text-align: center;
+  color: #5e94c1
+}
+
+.form-control2 {
+  height: 50px;
+  width: 400px;
+  background-color: #ffffff;
+  border-color: #3252D1;
+  border-radius: 20px;
+  font-size: 12px;
+  text-indent: 33px;
+  position: relative
+}
+
+.btn1 {
+  align-items: center;
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  background-color: #3252D1;
+  border: none;
+
+}
+
+.input-field {
+  position: relative;
+  text-indent: 33px;
+  
+}
+
+.input-field button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer
+}
+
+.card .icons {
+  position: absolute;
+  bottom: -340px;
+  left: 40%;
+  transition: all 0.5s
+}
+
+.card:hover .icons {
+  bottom: 40px
+}
+
+.card .icons span {
+  font-size: 23px;
+  color: white
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination-controls {
+  display: inline-block;
+  margin: 0 10px;
+}
+.pagination-previous,
+.pagination-next,
+.pagination-page {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+}
+.pagination-previous.disabled,
+.pagination-next.disabled,
+.pagination-page.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

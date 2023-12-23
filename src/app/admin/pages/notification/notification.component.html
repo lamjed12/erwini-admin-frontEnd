@@ -1,0 +1,55 @@
+<div class="full_container">
+  <div class="inner_container">
+    <app-sidebar></app-sidebar>
+    <div id="content">
+      <app-navbar></app-navbar>
+      <div class="midde_cont">
+        <div class="container-fluid">
+
+
+          <div class="row column_title">
+            <div class="col-md-12">
+              <div class="page_title">
+                <h2>Notification </h2>
+                <div class="row height d-flex justify-content-end align-items-center">
+                  <button class="favorite styled" type="button" (click)="filedownload()">
+                    Click To Download
+                  </button>
+                </div>
+              </div>
+
+            </div>
+            <div class="form">
+              <i class="fa fa-search"></i>
+              <input class="form-control form-input" type="text" placeholder="Search" [(ngModel)]="searchText">
+          </div>
+            
+            
+            <div class="table_section padding_infor_info">
+              <div class="table-responsive-sm">
+                <table class="table">
+                  <thead>
+                    <tr>
+                       <th>#</th>
+                      <th>Agriculteur</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                      <!-- <th></th> -->
+
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let notification of notifications | search: searchText | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <tr >
+                      <td>{{notification.phoneAgrecuteur}}</td>  
+                      <td>{{notification.nameAgrecuteur}}</td>
+                      <td>{{notification.date | date:'yyyy-MM-ddTHH:mm'}}</td>
+                      <td>{{notification.typeAction }} </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="pagination-wrapper">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>

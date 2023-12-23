@@ -1,0 +1,335 @@
+<div class="full_container">
+  <div class="inner_container">
+    <app-sidebar></app-sidebar>
+    <div id="content">
+      <app-navbar></app-navbar>
+      <div class="midde_cont">
+        <div class="container-fluid">
+
+
+          <div class="row column_title">
+            <div class="col-md-12">
+              <div class="page_title">
+                <h2>agriculteurs</h2>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="white_shd full margin_bottom_30">
+                <div class="full graph_head">
+                  <div class="button_block margin_0">
+                    <button type="button" class="btn cur-p btn-primary" data-toggle="modal" data-target="#myModal">
+                      Add New +
+                    </button>
+                    <div class="row height d-flex justify-content-end align-items-center">
+                      <!-- <div class=" d-flex justify-content-center mt-5"> -->
+                        <div class="input-field">
+                          <input type="text" class="form-control2" placeholder="Entrez le nom d'agriculteur" [(ngModel)]="searchText">
+                          <button class="btn btn1"><i class="fa fa-search"></i></button>
+                          <!-- <i class="fa fa-search"></i> -->
+                        </div>
+                      </div>
+                  </div>
+                 
+                </div>
+                
+                <!-- <div class="form-outline mb-4">
+                  <input type="text" [(ngModel)]="searchText" class="form-control" id="datatable-search-input">
+                  <label class="form-label" for="datatable-search-input">Search</label>
+                </div>
+                <div id="datatable">
+                </div> -->
+
+                <div class="table_section padding_infor_info">
+                  <div class="table-responsive-sm">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <!-- <th>#</th> -->
+                          <th>Name</th>
+                          <th>Phone</th>
+                          <th>Password</th>
+                          <th>Pus</th>
+                          <th>CodePuk</th>
+                          <th>City</th>
+                          <th>Region</th>
+                          <th>Nb Puit</th>
+                          <th>Nb Pompe</th>
+                          <th>Nb Vanne</th>
+                          <th>Points</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let agriculteur of agriculteurs | search: searchText | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr>
+                          <!-- <td>{{agriculteur._id}}</td> -->
+                          <td>{{agriculteur.Name}}</td>
+                          <td>{{agriculteur.Phone}}</td>
+                          <td>*****</td>
+                          <td>{{agriculteur.Pus}}</td>
+                          <td>{{agriculteur.CodePuk}}</td>
+                          <td>{{agriculteur.City}}</td>
+                          <td>{{agriculteur.Region}}</td>
+                          <td>{{agriculteur.NbPuit}}</td>
+                          <td>{{agriculteur.NbPompe}}</td>
+                          <td>{{agriculteur.NbVanne }}</td>
+
+                          <td>{{agriculteur.Points}}</td>
+                          <td class="icon_info">
+                            <ul>
+                              <li>
+                                <a class="dropdown-item fa fa-refresh" data-target="#updateMissionModal"
+                                  data-toggle="modal" href="javascript:void(0)"
+                                  (click)="onOpenModal1(agriculteur,'edit')">
+
+                                </a>
+                              </li>
+                              <li
+                                [ngClass]="{'active': agriculteur.Status_SIM === 'active', 'inactive': agriculteur.Status_SIM !== 'active'}">
+                                <a class="fa fa-plus-circle " data-target="#" (click)="onUpdateSIM(agriculteur)"
+                                  aria-hidden="true"></a>
+                              </li>
+                              <li>
+                                <a class="fa fa-trash dropdown-item" data-toggle="modal" data-target="#deleteCommand"
+                                  aria-hidden="true" href="javascript:void(0)"
+                                  (click)="onOpenModal1(agriculteur,'delete')"></a>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="pagination-wrapper">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal fade" id="deleteCommand" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModelLabel">Delete agriculteur</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this agriculteur : {{deleteCommand?._id}}?</p>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button (click)="onDeleteMission(deleteCommand?._id)" class="btn btn-danger"
+                      data-dismiss="modal">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">New agriculteur</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+                <form #myModal="ngForm" (ngSubmit)="onAddMission(myModal)">
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input ngModel type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"
+                        name="Name" />
+                    </div>
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Phone"
+                        name="Phone" />
+                    </div>
+                    <div class="form-group">
+                      <label>Password</label>
+                      <input type="password" name="Password" ngModel class="form-control" id="formGroupExampleInput2"
+                        placeholder="Password" />
+                    </div>
+                    <div class="form-group">
+                      <label>Pus</label>
+                      <input type="text" ngModel class="form-control" id="formGroupExampleInput" placeholder="Pus"
+                        name="Pus" />
+                    </div>
+                    <div class="form-group">
+                      <label>CodePuk</label>
+                      <input type="text" ngModel class="form-control" id="formGroupExampleInput2" placeholder="CodePuk"
+                        name="CodePuk" />
+                    </div>
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" ngModel class="form-control" id="formGroupExampleInput2" placeholder="City"
+                        name="City" />
+                    </div>
+                    <div class="form-group">
+                      <label>Region</label>
+                      <input type="text" ngModel name="Region" class="form-control" id="formGroupExampleInput2"
+                        placeholder="Region" />
+                    </div>
+                    <div class="form-group">
+                      <label>NbPuit</label>
+                      <input type="text" name="NbPuit" ngModel class="form-control" id="formGroupExampleInput2"
+                        placeholder="NbPuit" />
+                    </div>
+                    <div class="form-group">
+                      <label>NbPompe</label>
+                      <input type="text" name="NbPompe" ngModel class="form-control" id="formGroupExampleInput2"
+                        placeholder="NbPompe" />
+                    </div>
+                    <div class="form-group">
+                      <label>NbVanne</label>
+                      <input type="text" name="NbVanne" ngModel class="form-control" id="formGroupExampleInput2"
+                        placeholder="NbVanne" />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Points</label>
+                      <input type="text" name="Points" ngModel class="form-control" id="formGroupExampleInput2"
+                        placeholder="Points" />
+                    </div>
+
+                  </div>
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">
+                      Ok
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="deleteModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Delete agriculteur</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">Are you sure to delete this agriculteur?..</div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger">
+                    Ok
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="modal fade" id="updateMissionModal" tabindex="-1" role="dialog"
+            aria-labelledby="updateMissionModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="updateMissionModalLabel">Edit agriculteur</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <form #editForm="ngForm">
+
+                    <div class="form-group">
+                      <label for="_id">Id</label>
+                      <input ngModel="{{editMission?._id}}" type="text" class="form-control" name="_id" />
+                    </div>
+                    <div class="form-group">
+                      <label for="Name">Name</label>
+                      <input ngModel="{{editMission?.Name}}" type="text" class="form-control" name="Name" />
+                    </div>
+                    <div class="form-group">
+                      <label for="Phone">Phone</label>
+                      <input type="text" ngModel="{{editMission?.Phone}}" class="form-control"
+                        id="formGroupExampleInput2" placeholder="Phone" name="Phone" />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="Password">Password</label>
+                      <input type="password" ngModel="{{editMission?.Password}}" name="Password" class="form-control"
+                        id="formGroupExampleInput2" placeholder="Password" />
+                    </div>
+                    <div class="form-group">
+                      <label for="Pus">Pus</label>
+                      <input type="text" ngModel="{{editMission?.Pus}}" class="form-control" name="Pus" />
+                    </div>
+                    <div class="form-group">
+                      <label for="CodePuk">CodePuk</label>
+                      <input type="text" ngModel="{{editMission?.CodePuk}}" class="form-control" name="CodePuk" />
+                    </div>
+                    <div class="form-group">
+                      <label for="City">City</label>
+                      <input type="text" ngModel="{{editMission?.City}}" class="form-control"
+                        id="formGroupExampleInput2" placeholder="City" name="City" />
+                    </div>
+                    <div class="form-group">
+                      <label for="Region">Region</label>
+                      <input type="text" ngModel="{{editMission?.Region}}" name="Region" class="form-control"
+                        id="formGroupExampleInput2" placeholder="Region" />
+                    </div>
+                    <div class="form-group">
+                      <label for="NbPuit">NbPuit</label>
+                      <input type="text" ngModel="{{editMission?.NbPuit}}" name="NbPuit" class="form-control"
+                        id="formGroupExampleInput2" placeholder="NbPuit" />
+                    </div>
+                    <div class="form-group">
+                      <label for="NbPompe">NbPompe</label>
+                      <input type="text" ngModel="{{editMission?.NbPompe}}" name="NbPompe" class="form-control"
+                        id="formGroupExampleInput2" placeholder="NbPompe" />
+                    </div>
+                    <div class="form-group">
+                      <label for="NbVanne">NbVanne</label>
+                      <input type="text" ngModel="{{editMission?.NbVanne}}" name="NbVanne" class="form-control"
+                        id="formGroupExampleInput2" placeholder="NbVanne" />
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="Points">Points</label>
+                      <input type="text" name="Points" ngModel="{{editMission?.Points}}" class="form-control" />
+                    </div>
+
+
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                      <button (click)="onUpdateProduit(editForm)" data-dismiss="modal" class="btn btn-primary">Save
+                        changes</button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
